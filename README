@@ -1,0 +1,16 @@
+cynojure-swank is a collection clojure+slime extensions.
+
+To use the extensions, add the following to your .emacs.
+
+(add-to-list 'load-path "/path/to/cynojure-swank/src/")
+(require 'cynojure-swank)
+(add-hook 'slime-connected-hook
+	  (lambda ()
+	    (slime-load-file  "/path/to/cynojure-swank/src/cynojure-swank.clj")))
+
+To work with different javadoc collections, you can add to the
+`javadoc-alist' variable, e.g.:
+
+(add-to-list 'javadoc-alist '("^org\.jets3t" . "file://opt/java/jets3t-0.7.0/api-docs/"))
+(add-to-list 'javadoc-alist '("^com\.xerox\.amazonws" . "file://opt/java/typica-1.5.2a/apidocs/"))
+(add-to-list 'javadoc-alist '("^org\.mortbay" . "http://www.mortbay.org/apidocs/"))
