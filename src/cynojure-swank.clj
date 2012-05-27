@@ -1,6 +1,9 @@
+(ns cynojure-swank
+  (:use swank.commands))
+
 ;;; cynojure-swank extension
 
-(swank.commands/defslimefn resolve-symbol [sym ns-name]
- (when-let [the-class (ns-resolve (find-ns (symbol ns-name))
-				  (symbol sym))]
-   (.getName the-class)))
+(defslimefn resolve-symbol [sym ns-name]
+  (if-let [the-ns (find-ns (symbol ns-name))]
+    (when-let [the-class (ns-resolve the-ns (symbol sym))]
+      (.getName ^Class the-class))))
